@@ -1,5 +1,6 @@
 package com.example.webservicesexc.viewmodel
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,12 +12,13 @@ import kotlinx.coroutines.launch
 import java.lang.Exception
 
 class MainViewModel(repository: Repository) : ViewModel() {
-    val listProdutos = MutableLiveData<ArrayList<Produto>>()
+
+    val listProdutos = MutableLiveData<List<Produto>>()
 
     fun getAllProdutos() {
         try {
             viewModelScope.launch {
-                listProdutos.value = repository.getAllProdutos()
+                listProdutos.value = repository.getAllProdutos().listaProdutos
             }
         } catch (erro: Exception) {
             Log.e("MainViewModel", erro.toString())

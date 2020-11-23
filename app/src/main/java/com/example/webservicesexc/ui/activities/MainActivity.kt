@@ -28,11 +28,14 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.getAllProdutos()
 
-        viewModel.listProdutos.observe(this) {
-            val adapter = ProdutosAdapter(it)
+        viewModel.listProdutos.observe(this, {
+
+            val adapter = viewModel.listProdutos.value?.let {ProdutosAdapter(this, it)}
+            val produtosLayout = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+
             rvProdutos.adapter = adapter
-            rvProdutos.layoutManager = LinearLayoutManager(this)
+            rvProdutos.layoutManager = produtosLayout
             rvProdutos.setHasFixedSize(true)
-        }
+        })
     }
 }
