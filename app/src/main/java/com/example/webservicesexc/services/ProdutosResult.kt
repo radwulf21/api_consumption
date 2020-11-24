@@ -1,6 +1,7 @@
 package com.example.webservicesexc.services
 
 import com.example.webservicesexc.domain.Produto
-import com.squareup.moshi.Json
+import com.google.gson.annotations.Expose
+import com.google.gson.annotations.SerializedName
 
-class ProdutosResult(@Json(name = "produtos") val produtos: ArrayList<Produto>)
+class ProdutosResult(@SerializedName("produtos") @Expose var listaProdutos: List<Produto>)
