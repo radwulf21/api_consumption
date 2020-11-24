@@ -1,15 +1,12 @@
 package com.example.webservicesexc.services
 
-import com.example.webservicesexc.domain.Msg
-import com.example.webservicesexc.domain.Produto
-import com.squareup.moshi.Json
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
 interface Repository {
     @GET("produtos")
-    suspend fun getAllProdutos(): Msg
+    suspend fun getAllProdutos(): ProdutosResult
 }
 
 val retrofit = Retrofit.Builder()

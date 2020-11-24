@@ -16,7 +16,7 @@ class ProdutosAdapter(val context: Context, val listaProdutos: List<Produto>) :
 
     inner class ProdutosViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        var ivProduto: ImageView = itemView.findViewById(R.id.ivProduto)
+        // var ivProduto: ImageView = itemView.findViewById(R.id.ivProduto)
         var tvValor: TextView = itemView.findViewById(R.id.tvValor)
         var tvNome: TextView = itemView.findViewById(R.id.tvNome)
         var tvUnd: TextView = itemView.findViewById(R.id.tvUnd)
@@ -26,15 +26,14 @@ class ProdutosAdapter(val context: Context, val listaProdutos: List<Produto>) :
         parent: ViewGroup,
         viewType: Int
     ): ProdutosViewHolder {
-        val itemView =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_prod, parent, false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_prod, parent, false)
         return ProdutosViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: ProdutosViewHolder, position: Int) {
         var produto = listaProdutos[position]
 
-        Picasso.with(context).load(produto.url).fit().into(holder.ivProduto)
+        // Picasso.with(context).load(produto.url).fit().into(holder.ivProduto)
         holder.tvValor.text = produto.valor.toString()
         holder.tvNome.text = produto.nome_prod
         holder.tvUnd.text = produto.vol_prod
