@@ -7,6 +7,7 @@ import androidx.activity.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.webservicesexc.R
 import com.example.webservicesexc.services.repository
 import com.example.webservicesexc.ui.adapters.ProdutosAdapter
@@ -36,6 +37,28 @@ class MainActivity : AppCompatActivity() {
             rvProdutos.adapter = adapter
             rvProdutos.layoutManager = produtosLayout
             rvProdutos.setHasFixedSize(true)
+            setScrollView()
         })
+    }
+
+    private fun setScrollView() {
+        rvProdutos.run {
+            addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    super.onScrolled(recyclerView, dx, dy)
+
+                    val target = rvProdutos.layoutManager as LinearLayoutManager?
+                    val lastPosition = target!!.itemCount
+
+                    val visible = target.findLastVisibleItemPosition()
+
+                    val lastItem = visible + 1 >= lastPosition
+
+                    if (lastPosition > 0 && lastItem) {
+                        Log.i("setScrollView", "Nova página!")
+                    }
+                }
+            })
+        }
     }
 }
